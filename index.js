@@ -1,9 +1,9 @@
 const express = require('express');
-const validateMiddleware = require('./validateMiddleware');
-const logMiddleware = require('./logMiddleware');
+const validateMiddleware = require('./middleware/validate/validateMiddleware');
+const logMiddleware = require('./middleware/log/logMiddleware');
 
-const postSchema = require('./postSchema');
-const getSchema = require('./getSchema');
+const postSchema = require('./middleware/validate/schemas/postSchema');
+const getSchema = require('./middleware/validate/schemas/getSchema');
 
 const app = express();
 const port = 8080;
