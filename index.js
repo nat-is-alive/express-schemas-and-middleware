@@ -10,6 +10,10 @@ const port = 8080;
 
 app.use(express.json());
 
+app.get('/', logMiddleware, (req, res) => {
+    res.send('<h1>Welcome!</h1><p>Welcome to this really cool website!</p>');
+});
+
 app.post('/post', logMiddleware, validateMiddleware(postSchema), (req, res) => {
     res.send(req.body);
 });
