@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors');
 const validateMiddleware = require('./middleware/validate/validateMiddleware');
 const logMiddleware = require('./middleware/log/logMiddleware');
 
@@ -6,12 +7,13 @@ const postSchema = require('./middleware/validate/schemas/postSchema');
 const getSchema = require('./middleware/validate/schemas/getSchema');
 
 const app = express();
-const port = 8080;
+app.use(cors());
+const port = 3000;
 
 app.use(express.json());
 
 app.get('/', logMiddleware, (req, res) => {
-    res.send('<h1>Welcome!</h1><p>Welcome to this really cool website!</p>');
+    res.send('200 OK');
 });
 
 app.post('/post', logMiddleware, validateMiddleware(postSchema), (req, res) => {
