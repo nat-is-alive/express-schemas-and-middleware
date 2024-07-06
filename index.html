@@ -14,8 +14,15 @@
     <script>
       async function getData(value) {
         const url = "http://localhost:3000/get?name=" + value;
+        const apiKey = "api-key";
         try {
-          const response = await fetch(url);
+          const response = await fetch(url, {
+            method: "GET",
+            headers: {
+              "x-api-key": apiKey,
+            },
+          });
+
           const json = await response.json();
           document.getElementById("output").innerHTML = JSON.stringify(json);
           console.log(json);
