@@ -7,14 +7,17 @@
   </head>
   <body>
     <p id="output">Hello</p>
-    <button onclick="getData()">Click Me</button>
+    <input type="text" name="input" id="input" placeholder="enter your name" />
+    <button onclick="getData(document.getElementById('input').value)">
+      Click Me
+    </button>
     <script>
-      async function getData() {
-        const url = "http://localhost:3000/get?name=yourName";
+      async function getData(value) {
+        const url = "http://localhost:3000/get?name=" + value;
         try {
           const response = await fetch(url);
           const json = await response.json();
-          document.getElementById("output").innerHTML = json.name;
+          document.getElementById("output").innerHTML = JSON.stringify(json);
           console.log(json);
         } catch (error) {
           console.error(error.message);

@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node index.js",
-    "dev:front-end": "nodemon ./webServer/ localhost 8080",
-    "dev:back-end": "nodemon ./ localhost 3000"
+    "dev": "nodemon ./ localhost 3000"
   },
   "keywords": [],
   "author": "",

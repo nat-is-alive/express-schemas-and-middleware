@@ -2,28 +2,42 @@ const express = require('express');
 var cors = require('cors');
 const validateMiddleware = require('./middleware/validate/validateMiddleware');
 const logMiddleware = require('./middleware/log/logMiddleware');
-
 const postSchema = require('./middleware/validate/schemas/postSchema');
 const getSchema = require('./middleware/validate/schemas/getSchema');
 
-const app = express();
-app.use(cors());
-const port = 3000;
+// Web Server 
 
-app.use(express.json());
+const webServer = express();
+const webServerPort = 8080;
+webServer.use(express.json());
 
-app.get('/', logMiddleware, (req, res) => {
+webServer.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
+webServer.listen(webServerPort, () => {
+    console.log(`Web Server Listening on port ${webServerPort}`);
+});
+
+// API Server
+
+const apiServer = express();
+apiServer.use(cors());
+const apiServerPort = 3000;
+apiServer.use(express.json());
+
+apiServer.get('/', logMiddleware, (req, res) => {
     res.send('200 OK');
 });
 
-app.post('/post', logMiddleware, validateMiddleware(postSchema), (req, res) => {
+apiServer.post('/post', logMiddleware, validateMiddleware(postSchema), (req, res) => {
     res.send(req.body);
 });
 
-app.get('/get', logMiddleware, validateMiddleware(getSchema), (req, res) => {
+apiServer.get('/get', logMiddleware, validateMiddleware(getSchema), (req, res) => {
     res.send(req.query);
 });
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+apiServer.listen(apiServerPort, () => {
+    console.log(`API Server Listening on port ${apiServerPort}`);
 });
