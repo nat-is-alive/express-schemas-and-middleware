@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-deployment
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+        - name: node-app
+          image: api-key-test:latest # <image-name>
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+            - containerPort: 3000
+# Deploy this using the command:
+# - docker build -t <image-name> .
+# - kubectl apply -f deployment.yml
+# - kubectl apply -f service.yml
+# - kubectl get pods to verify, visit localhost:8080

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-service
+spec:
+  selector:
+    app: node-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: http
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      name: dev
+  type: LoadBalancer
+# To deploy, see instructions in the deployment.yml file
