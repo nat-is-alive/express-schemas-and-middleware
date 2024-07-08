@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node index.js",
+    "build": "node .",
     "dev": "nodemon ./ localhost 3000"
   },
   "keywords": [],

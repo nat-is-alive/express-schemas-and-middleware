@@ -24,8 +24,8 @@ webServer.listen(webServerPort, () => {
 
 const apiServer = express();
 apiServer.use(cors());
-apiServer.use(logMiddleware)
-apiServer.use(apiKeyMiddleware)
+apiServer.use(logMiddleware);
+apiServer.use(apiKeyMiddleware);
 const apiServerPort = 3000;
 apiServer.use(express.json());
 

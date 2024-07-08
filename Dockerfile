@@ -4,7 +4,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 8080 3000
-CMD ["npm", "run", "dev"] 
+CMD ["npm", "run", "build"] 
 
 # To build and run container:
 # - docker build -t <image-name> .
